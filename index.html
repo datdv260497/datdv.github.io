@@ -1,1 +1,106 @@
-Hellp
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<div class="row">
+    <div class="container-fluid">
+
+        <dl class="dl-horizontal m-md-r-0 m-md-l-0">
+<h1>Image 3</h1>
+			<dd>
+				<div class="panel panel-default" style="padding:5px;text-align:center;max-width:400px">
+					<img id="avatarPreview" src="" style="height:480px;width:360px;object-fit:cover" />
+					<div class="panel-body">
+						@Localizer["Upload new profile picture (360 x 480)"]
+					</div>
+					<div class="panel-footer">
+						<form id="FormUpdate" asp-action="UpdateAvatar" method="post" class="form-horizontal" enctype="multipart/form-data">
+							<input type="file" name="ProfilePictureUpload" accept="image/*" style="margin-bottom:5px"/>
+                            <button id="btn-submit-image" type="button" onclick="$('#FormUpdate').submit();" disabled style="display:inline-block" class="btn btn-sm btn-success-outline"><span class="icon icon-floppy"></span>@Localizer["Save"]</button>
+							
+						</form>
+					</div>
+				</div>
+			</dd>
+
+         
+        </dl>
+    </div>
+    <style>
+        dd {
+            margin-bottom: 10px;
+        }
+
+		select.link {
+			opacity: 0;
+			top: 0;
+			position: absolute;
+			height: 2em;
+			cursor: pointer;
+		}
+
+		p.btn-link {
+			line-height: 2em;
+		}
+    </style>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  
+
+		var noPicture = "data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAEBElEQVR4Xu2br08jQRiG5y4YEgyGpAaBoBIBloCoLAJZPMW3+IIHfFsNyAr6B0BQTUAgqUAg2gRTQ4Jpcse7mebKXQst3W / eb / e + JyHsTtiZne / Z + bE7w4 / b29tfzqDx0 / 82SJgAMiaAjAkgYwLImAAyJoCMCSBjAsiYADImgIwJIGMCyJgAMiaAjAkgYwLIJGZFbGlpyV1fX7u7uztXr9d96kf29 / fdxsaG297edi8vLz5VN + oFzM / Pu2q1Ojbo44CMg4MD9 / b25lN0orYLWltbc61WK3qipw0 + wDW4FnkgL62oFICA4ek9PDz0Kd8HeSAvrRLUCRgE//Ly0qfMDvLSKkGVAIngD9AqQZWAWq0mEvwByBtlaELNLAizHQyaIcBUVsvsSE0LwFQzFCHL+goVLQAvWdls1p+F4fHxUcXLmooWgDfc0DDKHIUKAeiTQ8MocxQquqDNzU1/FJb3uvsjHqqmof8jJoCMCSBjAsiYADIqBGDxJDSMMkehQkCob0DDMMochQoBWMMNDaPMUagQgG8yIbsElKVl0d4+R5NRMwtCQE5OTvyZHChD004JNQJAsVh0hULBn8UP8kYZmlAl4OHhIVoskZCAPJE3ytCEKgFAQoLW4APaIIxVMAyGr6+v0fnCwoJbXl6OjgF2L2ABfda9Qejz0e0MB//5+flDuRj8WbOi4AJ6vV4U2Gaz6VP+kM/nXblcdnNzcz4l3q2J/X7fnZ6eji0bohYXF31KGIIJWFlZcUdHRxMFslQqRX87/NTOsjkXrQn5nZ2d+ZTxoLtCq3l6evIpsgQRgODh6bq5ufEpX7O1tRVdM9wtfQd0N2hx05aNa0J0S+IC8PTt7e2NbPaTgGDs7OxEP5MGBMKvrq6in2kCPwy6pIuLC/GBW1xAo9GYqOlPAoKyvr7uVldX/9nGgm0m7Xbb3d/ff1v236Ar3N3d9WcyiAoI+XlBCunPFqLvAZi9JB3pOoi1gDQ8/QMkW4FYC8AAmBYk6yIm4Pj42B8lH8ltjCIC8MaZJjCVlaqTiABMB9OGVJ1EBGDQShtSdRKZBbE220rzHit/FB+xtwB8dEsrEnWLXUC32/VH6UOibrEL6HQ6/ih9SNTNWsAUJKIFGNNhAsiYADImgIwJIGMCyMQuIJPJ+KP0IVG32AVg0TytSNQtdgHY0KTl/6/iBHWS2Kwl8jU0TevBA6TWhUUGYdxopVLxZ8kHdUnconwul0uFBNQBdZFCTADAjZ+fn0fbC5MG7hn3Lhl8ICoAYHMttnWgMkkYnHGPuFfc86wbgydBfG+o8TniLcD4HBNAxgSQMQFkTAAZE0DGBJAxAWRMABkTQMYEkDEBZEwAGRNAxgSQMQFkTAAV534DBaq/9DmB44AAAAAASUVORK5CYII=";
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#avatarPreview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+                $("#btn-submit-image").removeAttr("disabled");
+            }
+        }
+
+		$("input[name='ProfilePictureUpload']").change(function () {
+            console.log("hello");
+			if ($("input[name='ProfilePictureUpload']").prop('files')[0].size > 10000) {
+                //alert("Please select a photo with a size of less than 1MB");
+                $("#myModal").modal()
+
+				$("input[name='ProfilePictureUpload']").val(null);
+				$('#avatarPreview').attr('src', noPicture);
+                $("#avatarPreview-name").text("");
+                return;
+            }
+            console.log("valid");
+            readURL(this);
+        });
+
+        $("#btn-clear-image").on('click', function () {
+			$("input[name='ProfilePictureUpload']").val(null);
+            $('#avatarPreview').attr('src', noPicture);
+            $("#btn-submit-image").removeAttr("disabled");
+        });
+	
+</script>
